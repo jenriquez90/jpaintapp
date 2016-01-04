@@ -1,0 +1,11 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<md-content id="content" layout="row" layout-fill>
+    <md-button id="contacts" ng-click="showContacts()" class="md-fab md-primary md-hue-2" aria-label="Profile">
+        <md-icon md-svg-src="assets/img/icons/contacts/contacts.svg"></md-icon>
+    </md-button>
+    <ng-include flex-lg="0" flex-md="0" flex-sm="0"
+                src="'app/paint/contacts/contacts.html'"></ng-include>
+    <ng-include flex flex-lg="90" flex-md="100" flex-sm="100" layout="column"
+                src="'app/paint/conversations/conversations.html'"></ng-include>
+</md-content>

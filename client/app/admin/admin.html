@@ -1,0 +1,12 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div class="container">
+  <p>List of users</p>
+  <ul class="list-group">
+    <li class="list-group-item" ng-repeat="user in users">
+        <strong>{{user.username}}</strong><br>
+        <span class="text-muted">{{user.role}}</span>
+        <a ng-click="delete(user)" class="trash"><span class="btn btn-warning">x</span></a>
+    </li>
+  </ul>
+</div>

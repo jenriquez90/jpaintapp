@@ -1,0 +1,50 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div layout="column" layout-fill>
+    <md-content layout-padding layout-fill>
+        <h2 layout="row">Login</h2>
+        <div layout="column" layout-align="center center" flex-sm="45" flex-gt-sm="35" flex-gt-md="25"
+                       ng-if="loginError">
+            <h3 layout="row">Login Failed
+            </h3>
+            <div layout="row" ng-bind="loginError">
+
+            </div>
+        </div>
+        <div layout="row">
+            <span flex></span>
+
+            <form name="loginForm" novalidate autocomplete="off" ng-submit="login(loginForm, login)" flex-gt-sm="40"
+                  flex-sm="80">
+                <md-input-container class="md-block">
+                    <label>Username</label>
+                    <input md-maxlength="10" required name="username" ng-model="login.username">
+
+                    <div ng-messages="loginForm.username.$error" ng-show="loginForm.password.$dirty">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The name has to be less than or equal to 10 characters
+                            long.
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input required type="password" name="password" ng-model="login.password">
+
+                    <div ng-messages="loginForm.password.$error" ng-show="loginForm.password.$dirty">
+                        <div ng-message="required">This is required.</div>
+                        <div ng-message="md-maxlength">The password has to be less than or equal to 10 characters
+                            long.
+                        </div>
+                    </div>
+                </md-input-container>
+                <md-input-container layout="row">
+                    <span flex></span>
+                    <md-button flex-sm="60" flex-gt-sm="30" class="md-raised md-primary">Login</md-button>
+                </md-input-container>
+            </form>
+            <span flex></span>
+        </div>
+    </md-content>
+</div>
+

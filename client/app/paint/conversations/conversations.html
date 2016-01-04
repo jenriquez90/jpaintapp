@@ -1,0 +1,98 @@
+<!-- View for conversations -->
+<div class="md-padding" layout="row" ng-controller="ConversationsController">
+    <span flex="10" flex-sm="25" layout="column"></span>
+
+    <div flex class="md-padding" ng-hide="activeConvos.length > 0">
+        <h3>
+            Click on a contact to open a conversation.
+        </h3>
+    </div>
+
+    <md-tabs flex ng-show="activeConvos.length > 0" md-selected="selectedConvo" md-autoselect md-dynamic-height>
+        <md-tab ng-repeat="convo in activeConvos" label="{{convo.title}}">
+            <div flex layout="column" layout-gt-md="row" layout-padding>
+                <div flex="45" layout="column">
+                    <fieldset flex>
+                        <legend>Conversation</legend>
+                        <div layout="row" class="md-padding">
+                            <h3 class="md-primary md-raised" ng-bind="setTitle(convo)"></h3>
+                            <span flex></span>
+                            <md-button class="md-primary md-raised" ng-click="endConversation($event, $index)"
+                                       ng-disabled="tabs.length <= 1">Leave
+                            </md-button>
+                        </div>
+                        <div class="message-view" messages="convo.messages.length">
+                            <div ng-repeat="message in convo.messages" layout="row" flex="60">
+                                <span flex ng-hide="message.received"></span>
+
+                                <div layout="column" flex="75" class="message"
+                                     ng-class="sentOrReceived(message)">
+                                    <div flex>
+                                        <span class="user-says">{{message.from.username}} says: </span>
+                                        <span ng-bind="message.text"></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <span layout="column" flex></span>
+
+                        <form layout="row"
+                              autocomplete="off" novalidate name="messageForm"
+                              ng-submit="sendMessage(messageForm, convo)">
+                            <md-input-container class="md-block" flex>
+                                <label>Message</label>
+                                <input type="text" ng-model="convo.newMessage" maxlength="250">
+                            </md-input-container>
+                            <md-button class="md-raised md-warn btn-send">Send</md-button>
+                        </form>
+                    </fieldset>
+                </div>
+                <div flex layout="column" layout-gt-md="row" layout-padding>
+                    <div flex layout="column" layout-padding>
+                        <fieldset>
+                            <legend>Drawing Board</legend>
+                            <div ng-repeat="member in convo.members" class="layerName">
+                                <md-checkbox ng-checked="member.layerVisible"
+                                             ng-click="toggleLayer(convo, member)">
+                                    {{ member.username }}
+                                </md-checkbox>
+                            </div>
+                            <div layout="column">
+
+                                <div layout="row">
+                                    <div flex="25" layout layout-align="center center">
+                                        <span class="md-body-1">Line Width</span>
+                                    </div>
+                                    <md-slider md-discrete flex min="1" max="100"
+                                               ng-model="convo.canvaOptions.lineWidth"
+                                               aria-label="lineWidth" aria-controls="blue-slider">
+                                </div>
+
+                                <div layout="row">
+                                    <div flex="25" layout layout-align="center center">
+                                        <span class="md-body-1">Color</span>
+                                    </div>
+                                    <div flex md-color-picker value="convo.canvaOptions.color"></div>
+                                </div>
+
+                                <!--input type="color" ng-model="convo.canvaOptions.color">
+                                <input type="range" ng-model="convo.canvaOptions.lineWidth"-->
+                            </div>
+
+                            <div class="canvas-border" layout="row">
+                                <span flex></span>
+
+                                <div class="canvas-wrapper" myself="getCurrentUser()"
+                                     drawable-canvas="convo" room-id="convo.roomId" options="convo.canvaOptions">
+                                    <canvas height="450px" width="600px">
+                                    </canvas>
+                                </div>
+                                <span flex></span>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </md-tab>
+    </md-tabs>
+</div>

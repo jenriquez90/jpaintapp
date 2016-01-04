@@ -1,0 +1,132 @@
+body {
+    padding: 0em 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+}
+
+md-content {
+    background-color: #dadada;
+}
+
+#navbar {
+    position: fixed;
+    top: 0;
+}
+
+#content {
+    padding: 3.5em 0;
+}
+
+#contacts {
+    position: fixed;
+    top: 6em;
+    left: 0;
+    z-index: 100;
+}
+
+button.md-fab {
+    height: 60px;
+    width: 60px;
+}
+
+#contacts md-icon {
+    height: 40px;
+    width: 40px;
+}
+
+.hide {
+    display: none;
+}
+
+md-sidenav {
+    background-color: transparent;
+}
+
+.message {
+    padding: 0.5em 1em;
+    margin: 0.25em;
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    word-break: break-all;
+    overflow: hidden;
+}
+
+.messageReceived {
+    text-align: right;
+    background-color: #16BAC5;
+    background: linear-gradient(to bottom, #16BAC5, #8adce2);
+
+}
+
+.messageSent {
+    text-align: left;
+    background-color: #45b69c;
+    background: linear-gradient(to bottom, #45b69c, #a2dacd);
+
+}
+
+.messagesWrapper form {
+    position: absolute;
+    bottom: 0;
+    height: 20%;
+}
+
+.layerName {
+    display: inline-block;
+}
+
+fieldset {
+    -webkit-border-radius: 1em;
+    -moz-border-radius: 1em;
+    border-radius: 1em;
+    border-width: 0.25em;
+    border-color: rgba(0, 0, 0, 0.25);
+}
+
+.canvas-wrapper {
+    display: inline-block;
+    background-color: #F7F7F7;
+    /**overflow: hidden;
+    */
+    -webkit-border-radius: 0.5em;
+    -moz-border-radius: 0.5em;
+    border-radius: 0.5em;
+    position: relative;
+}
+
+.canvas-wrapper canvas:not(:first-of-type) {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.btn-send {
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+}
+
+.notifications-menu h3 {
+    text-align: center;
+}
+
+[aria-label='search'] {
+    background-image: url("../../assets/img/icons/search_icon2.png");
+    width: 75px;
+    height: 75px;
+    background-size: contain;
+    background-position: center center;
+}
+
+.hidden-canvas {
+    opacity: 0;
+}
+
+.user-says {
+    font-weight: bold;
+}

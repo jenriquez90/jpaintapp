@@ -1,0 +1,37 @@
+<md-toolbar id="navbar" ng-controller="NavbarController" layout="row" flex="100">
+    <div layout="row">
+        <div layout="column" ng-repeat="item in mainMenu">
+            <md-button ng-click="clickHandler(item.link)" ng-class="{active: isActive(item.link)}">
+                {{item.name}}
+            </md-button>
+        </div>
+        <!--div flex="50" ng-show="isAdmin()" ng-class="{active: isActive('/admin')}">
+            <a href="/admin">Admin</a>
+        </div-->
+    </div>
+    <span flex></span>
+    <md-fab-toolbar ng-show="isLoggedIn()">
+        <p><strong>Paint App: </strong> Hello, {{ getCurrentUser().username }} </p>
+    </md-fab-toolbar>
+    <span flex></span>
+
+    <div layout="row">
+        <md-button ng-hide="isLoggedIn()" ng-click="clickHandler('/register')"
+                   ng-class="{active: isActive('/signup')}">
+            Register
+        </md-button>
+        <md-button ng-hide="isLoggedIn()" ng-click="clickHandler('/login')"
+                   ng-class="{active: isActive('/login')}">
+            Login
+        </md-button>
+        <ng-include src="'components/navbar/notifications/notifications.html'"></ng-include>
+        <md-button ng-show="isLoggedIn()" ng-click="clickHandler('/settings')"
+                   ng-class="{active: isActive('/settings')}">
+            Settings
+        </md-button>
+        <md-button ng-show="isLoggedIn()" ng-click="logout()"
+                   ng-class="{active: isActive('/logout')}">
+            Logout
+        </md-button>
+    </div>
+</md-toolbar>

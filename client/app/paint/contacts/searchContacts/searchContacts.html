@@ -1,0 +1,61 @@
+<md-dialog flex="90" flex-gt-md="50" aria-label="addedContact(b)" ng-cloak>
+    <form layout="column" name="searchForm" autocomplete="off" novalidate>
+        <md-toolbar>
+            <div class="md-toolbar-tools">
+                <h2>Add Contact</h2>
+                <span flex></span>
+                <md-button class="md-icon-button" ng-click="cancel()">
+                    <md-icon md-svg-src="assets/img/icons/ic_close_24px.svg" aria-label="Close dialog"></md-icon>
+                </md-button>
+            </div>
+        </md-toolbar>
+        <md-dialog-content layout="column">
+            <div layout="row" ng-cloak>
+                <md-content flex layout="column" layout-padding>
+                    <div layout="row">
+                        <md-input-container flex>
+                            <label>Username</label>
+                            <input required name="userField" ng-model="user" type="text">
+
+                            <div ng-messages="searchForm.userField.$error" ng-show="searchForm.$dirty">
+                                <div ng-message="required">Username field is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-input-container layout="column">
+                            <md-button class="md-icon-button" aria-label="search" ng-click="search(searchForm)">
+                                <!--img width="30px" height="30px" src="assets/img/icons/search_icon2.png"-->
+                            </md-button>
+                        </md-input-container>
+                    </div>
+
+                    <div layout="column" ng-if="errorMessage">
+                        <div>No matches</div>
+                        <div ng-bind="errorMessage.message">
+
+                        </div>
+                    </div>
+                    <md-list ng-cloak>
+                        <md-subheader ng-show="foundMatches.length > 0" class="md-no-sticky">Matches</md-subheader>
+                        <div class="matchesFound">
+                            <md-list-item ng-repeat="match in foundMatches" aria-label="Profile"
+                                          ng-click="viewProfile(match)">
+                                <p ng-bind="match.username"></p>
+                                <md-button class="md-raised md-primary" aria-label="Request"
+                                           ng-click="sendFriendRequest(match)">
+                                    Send Request
+                                </md-button>
+                            </md-list-item>
+                        </div>
+
+                    </md-list>
+
+                </md-content>
+            </div>
+            <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+                <span flex></span>
+                <md-button ng-click="done()" class="md-raised">Done</md-button>
+                <md-button ng-click="cancel()" class="md-raised md-warn">Cancel</md-button>
+            </section>
+        </md-dialog-content>
+    </form>
+</md-dialog>

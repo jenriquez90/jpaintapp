@@ -1,0 +1,42 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div layout="column" layout-fill>
+    <md-content layout-padding layout-fill>
+        <h2 layout="row">Settings</h2>
+        <div layout="row">
+            <span flex></span>
+            <form name="settingsForm" novalidate autocomplete="off" ng-submit="saveSettings(settingsForm)"
+                  flex-gt-sm="40" flex-sm="80">
+                <md-input-container class="md-block">
+                    <label>New Password</label>
+                    <input md-maxlength="10" required type="password" name="password"
+                           ng-model="settings.password">
+
+                    <div ng-messages="settingsForm.password.$error" ng-show="settingsForm.password.$dirty">
+                        <div ng-message="required">{{ errorMessages.required }}</div>
+                        <div ng-message="md-maxlength">{{ errorMessages.passwordLength }}</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Confirm Password</label>
+                    <input md-maxlength="10" required type="password" name="confirmPassword"
+                           must-equal="settings.password"
+                           ng-model="settings.confirmPassword">
+
+                    <div ng-messages="settingsForm.confirmPassword.$error"
+                         ng-show="settingsForm.confirmPassword.$dirty">
+                        <div ng-message="required">{{ errorMessages.required }}</div>
+                        <div ng-message="md-maxlength">{{ errorMessages.passwordLength }}</div>
+                        <div ng-message="mustEqual">{{ errorMessages.passwordMatch }}</div>
+                    </div>
+                </md-input-container>
+                <md-input-container>
+                    <md-button class="md-raised md-primary">Save
+                    </md-button>
+                </md-input-container>
+            </form>
+            <span flex></span>
+        </div>
+
+    </md-content>
+</div>

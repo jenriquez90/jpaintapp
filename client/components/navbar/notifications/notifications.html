@@ -1,0 +1,41 @@
+<md-menu ng-controller="NotificationsController">
+    <md-button ng-show="notifications.length > 0" aria-label="Show notifications" ng-click="openMenu($mdOpenMenu, $event)">
+        Alerts<br>{{notifications.length}}
+    </md-button>
+
+    <md-menu-content class="notifications-menu">
+        <h3 >Notifications</h3>
+
+        <md-menu-item layout="row" ng-repeat="notification in notifications">
+            <span layout="column" flex ng-bind="notification.title"></span>
+
+            <!--div layout="row" flex="50">
+                <md-button layout="column" class="md-primary md-raised"
+                           ng-click="clickHandler(notification, 'acceptRequest')">
+                    Accept
+                </md-button>
+                <md-button layout="column" class="md-warn md-raised"
+                           ng-click="clickHandler(notification, 'rejectRequest')">
+                    Reject
+                </md-button>
+            </div-->
+        </md-menu-item>
+
+        <!--md-menu-item>
+            <md-button ng-click="redial($event)">
+                Redial
+            </md-button>
+        </md-menu-item>
+        <md-menu-item>
+            <md-button disabled="disabled" ng-click="checkVoicemail()">
+                Check voicemail
+            </md-button>
+        </md-menu-item>
+        <md-menu-divider></md-menu-divider>
+        <md-menu-item>
+            <md-button ng-click="toggleNotifications()">
+                {{notificationsEnabled ? 'Disable' : 'Enable' }} notifications
+            </md-button>
+        </md-menu-item-->
+    </md-menu-content>
+</md-menu>

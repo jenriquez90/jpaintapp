@@ -1,0 +1,53 @@
+<div ng-include="'components/navbar/navbar.html'"></div>
+
+<div layout="column" layout-fill>
+    <md-content layout-padding layout-fill>
+        <h3 layout="row">Register</h3>
+        <div layout="row">
+            <span flex></span>
+            <form name="registerForm" novalidate autocomplete="off" ng-submit="register(registerForm, data)"
+                  flex-sm="80"
+                  flex-gt-sm="40">
+                <md-input-container class="md-block">
+                    <label>Username</label>
+                    <input md-maxlength="10" required name="username" ng-model="data.username">
+
+                    <div ng-messages="registerForm.username.$error" ng-show="registerForm.username.$dirty">
+                        <div ng-message="required">{{ errorMessages.required }}</div>
+                        <div ng-message="md-maxlength"> {{ errorMessages.nameLength }}</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Password</label>
+                    <input md-maxlength="10" required type="password" name="password" ng-model="data.password">
+
+                    <div ng-messages="registerForm.password.$error" ng-show="registerForm.password.$dirty">
+                        <div ng-message="required">{{ errorMessages.required }}</div>
+                        <div ng-message="md-maxlength">{{ errorMessages.passwordLength }}</div>
+                    </div>
+                </md-input-container>
+                <md-input-container class="md-block">
+                    <label>Confirm Password</label>
+                    <input md-maxlength="10" required type="password" name="confirmPassword" must-equal="data.password"
+                           ng-model="data.confirmPassword">
+
+                    <div ng-messages="registerForm.confirmPassword.$error"
+                         ng-show="registerForm.confirmPassword.$dirty">
+                        <div ng-message="required">{{ errorMessages.required }}</div>
+                        <div ng-message="md-maxlength">{{ errorMessages.passwordLength }}</div>
+                        <div ng-message="mustEqual">{{ errorMessages.passwordMatch }}</div>
+                    </div>
+                </md-input-container>
+                <md-input-container layout="row">
+                    <span flex></span>
+                    <md-button flex-sm="60" flex-gt-sm="30" class="md-raised md-primary">Register
+                    </md-button>
+                </md-input-container>
+            </form>
+            <span flex></span>
+        </div>
+
+    </md-content>
+
+
+</div>

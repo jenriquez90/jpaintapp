@@ -1,0 +1,42 @@
+<!-- View for contacts-->
+<md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="contacts">
+    <md-content layout="column" layout-padding ng-controller="ContactsController">
+        <h4 layout="row" class="md-toolbar-tools">Contacts</h4>
+
+        <div layout="row">
+
+            <span flex></span>
+            <md-button class="md-fab" aria-label="Contacts" ng-click="showContactsDialog($event)">
+                <img width="40px" height="40px" src="assets/img/icons/contacts/add_user.png">
+            </md-button>
+        </div>
+
+        <md-list-item ng-repeat="contact in contacts" ng-click="startChat(contact)">
+            <img alt="{{ contact.name }}" ng-src="{{ getImage(contact.username) }}" class="md-avatar"/>
+
+            <p>{{ contact.username }}</p>
+
+            <div ng-switch="contact.status">
+                <div ng-switch-when="Request Sent">
+                    <md-button ng-disabled="true" class="md-primary md-raised">
+                        Request Sent
+                    </md-button>
+                </div>
+                <div ng-switch-when="Confirm Friend">
+                    <md-button ng-click="confirmFriend(contact)" class="md-primary md-raised">
+                        Confirm Friend
+                    </md-button>
+                </div>
+                <div ng-switch-default="">
+                    <md-icon ng-hide="contact.status" md-svg-icon="communication:messenger"
+                             ng-click="addToConversation(contact)"
+                             aria-label="Open Chat"
+                             class="md-secondary md-hue-3" ng-class="{'md-primary': contact.newMessage}"></md-icon>
+                </div>
+            </div>
+        </md-list-item>
+        <md-button ng-click="close()" class="md-primary">
+            Hide Contacts List
+        </md-button>
+    </md-content>
+</md-sidenav>
